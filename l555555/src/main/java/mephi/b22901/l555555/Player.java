@@ -2,64 +2,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package mephi.b22901.l555555;
 /**
  *
  * @author Мария
  */
-public class Player {
+
+public class Player extends Fighter {
     
-    private int level;
-    private int health;
-    private int maxhealth;
-    private int damage;
-    private int attack;
-    
-    public Player(int level, int health, int damage, int attack){
-        this.level=level;
-        this.health=health;
-        this.damage=damage;
-        this.attack=attack;
-        this.maxhealth=health;
+    private int points;
+    private int experience;
+    private int nextLevelExperience;
+    private Item[] items;
+
+    public Player(int level, int maxhealth, int damage) {
+        super(level, maxhealth, damage);
+        points = 0;
+        experience = 0;
+        nextLevelExperience = 40;
     }
-   
-    public void setLevel(){
-        this.level++;
+
+    public int getPoints() {
+        return points;
     }
-    public void setHealth(int h){
-        this.health+=h;
+
+    public void setPoints(int points) {
+        this.points = points;
     }
-    public void setNewHealth(int h){
-        this.health=h;
+
+    public int getExperience() {
+        return experience;
     }
-    public void setDamage(int d){
-        this.damage+=d;
+
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
-    public void setAttack(int a){
-        this.attack=a;
+
+    public int getNextLevelExperience() {
+        return nextLevelExperience;
     }
-    public void setMaxHealth(int h){
-        this.maxhealth+=h;
+
+    public void setNextLevelExperience(int nextLevelExperience) {
+        this.nextLevelExperience = nextLevelExperience;
     }
-    
-    public int getLevel(){
-        return this.level;
+
+    public Item[] getItems() {
+        return items;
     }
-    public int getHealth(){
-        return this.health;
+
+    public void setItems(Item[] items) {
+        this.items = items;
     }
-    public int getDamage(){
-        return this.damage;
+
+    @Override
+    public String getName() {
+        return "You";
     }
-    public int getAttack(){
-        return this.attack;
-    }
-    public int getMaxHealth(){
-        return this.maxhealth;
-    }
-    
-    public String getName(){
-        return "";
-    }
-    
+
 }

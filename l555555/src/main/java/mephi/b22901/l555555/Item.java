@@ -3,33 +3,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package mephi.b22901.l555555;
+
 /**
  *
- * @author Мария
+ * @author ivis2
  */
-public class Result {
+public class Item {
 
     private String name;
-    private int points;
+    private int count;
 
-    public Result(String n, int p) {
+    public Item(String n, int c) {
         this.name = n;
-        this.points = p;
+        this.count = c;
     }
 
     public void setName(String s) {
         this.name = s;
     }
 
-    public void setPoints(int p) {
-        this.points = p;
+    public void setCount(int c) {
+        this.count += c;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public int getPoints() {
-        return this.points;
+    public int getCount() {
+        return this.count;
     }
 }
