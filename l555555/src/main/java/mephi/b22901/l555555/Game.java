@@ -83,36 +83,35 @@ public class Game {
     }
     
     public void readFromExcel() throws IOException {
-    File file = new File("Results.xlsx");
-    
-    if (!file.exists()) {
-        try (XSSFWorkbook book = new XSSFWorkbook()) {
-            XSSFSheet sheet = book.createSheet("Результаты ТОП 10");
-            XSSFRow header = sheet.createRow(0);
-            header.createCell(0).setCellValue("№");
-            header.createCell(1).setCellValue("Имя");
-            header.createCell(2).setCellValue("Количество баллов");
+        File file = new File("Results.xlsx");
 
-            try (FileOutputStream out = new FileOutputStream(file)) {
-                book.write(out);
+        if (!file.exists()) {
+            try (XSSFWorkbook book = new XSSFWorkbook()) {
+                XSSFSheet sheet = book.createSheet("Результаты ТОП 10");
+                XSSFRow header = sheet.createRow(0);
+                header.createCell(0).setCellValue("№");
+                header.createCell(1).setCellValue("Имя");
+                header.createCell(2).setCellValue("Количество баллов");
+
+                try (FileOutputStream out = new FileOutputStream(file)) {
+                    book.write(out);
+                }
+            }
+            return;
+        }
+
+        try (XSSFWorkbook book = new XSSFWorkbook(new FileInputStream(file))) {
+            XSSFSheet sh = book.getSheetAt(0);
+            for (int i = 1; i <= sh.getLastRowNum(); i++) {
+                XSSFRow row = sh.getRow(i);
+                if (row != null && row.getCell(1) != null && row.getCell(2) != null) {
+                    String name = row.getCell(1).getStringCellValue();
+                    int points = (int) row.getCell(2).getNumericCellValue();
+                    results.add(new Result(name, points));
+                }
             }
         }
-        return;
     }
-
-    try (XSSFWorkbook book = new XSSFWorkbook(new FileInputStream(file))) {
-        XSSFSheet sh = book.getSheetAt(0);
-        for (int i = 1; i <= sh.getLastRowNum(); i++) {
-            XSSFRow row = sh.getRow(i);
-            if (row != null && row.getCell(1) != null && row.getCell(2) != null) {
-                String name = row.getCell(1).getStringCellValue();
-                int points = (int) row.getCell(2).getNumericCellValue();
-                results.add(new Result(name, points));
-            }
-        }
-    }
-}
-
 
     public void writeToTable(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();

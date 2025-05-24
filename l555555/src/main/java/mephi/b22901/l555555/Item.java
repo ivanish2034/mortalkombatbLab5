@@ -13,17 +13,17 @@ public class Item {
     private String name;
     private int count;
 
-    public Item(String n, int c) {
-        this.name = n;
-        this.count = c;
+    public Item(String name, int count) {
+        this.name = name;
+        this.count = count;
     }
 
     public void setName(String s) {
         this.name = s;
     }
 
-    public void setCount(int c) {
-        this.count += c;
+    public void setCount(int count) {
+        this.count += count;
     }
 
     public String getName() {

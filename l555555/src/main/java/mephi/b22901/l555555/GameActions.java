@@ -33,7 +33,8 @@ public class GameActions {
 
     public void addPoints(Player player) {
         player.setExperience(20+5*player.getLevel());
-        player.setPoints(20+5*player.getLevel()+player.getHealth()/4);
+        int points = 20 + 5 * player.getLevel() + player.getHealth() / 4;
+        player.setPoints(player.getPoints() + points);
     }
 
     public boolean checkExperience(Player player) {
@@ -54,7 +55,7 @@ public class GameActions {
 
     public void addPointsBoss(Player player) {
         player.setExperience(50);
-        player.setPoints(65 + player.getHealth() / 2);
+        player.setPoints(player.getPoints() + 65 + player.getHealth() / 2);
     }
 
     public void addItems(int k1, int k2, int k3, Item[] items) {
@@ -62,10 +63,10 @@ public class GameActions {
         if (i < k1 * 0.01) {
             items[0].setCount(1);
         }
-        if (i >= k1 * 0.01 & i < (k1 + k2) * 0.01) {
+        else if (i >= k1 * 0.01 & i < (k1 + k2) * 0.01) {
             items[1].setCount(1);
         }
-        if (i >= (k1 + k2) * 0.01 & i < (k1 + k2 + k3) * 0.01) {
+        else if (i >= (k1 + k2) * 0.01 & i < (k1 + k2 + k3) * 0.01) {
             items[2].setCount(1);
         }
     }
@@ -119,12 +120,12 @@ public class GameActions {
                 case "Sub-Zero" -> {
                     enemy.setLevel(1);
                     enemy.setDamage(16);
-                    enemy.setMaxHealth(60);
+                    enemy.setMaxHealth(65);
                 }
                 case "Sonya Blade" -> {
                     enemy.setLevel(1);
-                    enemy.setDamage(16);
-                    enemy.setMaxHealth(80);
+                    enemy.setDamage(14);
+                    enemy.setMaxHealth(55);
                 }
                 case "Boss" -> {
                     enemy.setLevel(1);
@@ -139,7 +140,7 @@ public class GameActions {
                 case "Baraka" -> {
                     enemy.setLevel(1);
                     enemy.setDamage(12);
-                    enemy.setMaxHealth(100);
+                    enemy.setMaxHealth(75);
                 }
             }
         }

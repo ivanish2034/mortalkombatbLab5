@@ -73,7 +73,7 @@ public class Fight {
             mediator.setDebuffLabel(player, false);
         }
         if (player.isDebuffed()) {
-            mediator.setDebuffLabel(enemy, true);
+            mediator.setDebuffLabel(player, true);
             player.loseDebuffTurn();
         }
 
@@ -84,8 +84,7 @@ public class Fight {
         FightAction enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
         switch (a) {
             case 0 -> {
-                playerMove(enemyAction,
-                        actionsList.get(1));
+                playerMove(enemyAction,actionsList.get(1));
                 if (enemy.getHealth() > 0) {
                     enemyMove(actionsList.get(1), enemyAction);
                 }
@@ -93,15 +92,13 @@ public class Fight {
             case 1 -> {
                 playerMove(enemyAction, actionsList.get(0));
                 if (enemy.getHealth() > 0) {
-                    enemyMove(actionsList.get(0),
-                            enemyAction);
+                    enemyMove(actionsList.get(0),enemyAction);
                 }
             }
             case 2 -> {
                 playerMove(enemyAction, actionsList.get(2));
                 if (enemy.getHealth() > 0) {
-                    enemyMove(actionsList.get(2),
-                            enemyAction);
+                    enemyMove(actionsList.get(2),enemyAction);
                 }
             }
         }
@@ -144,10 +141,14 @@ public class Fight {
                 action.addPoints(player);
             }
         } else {
-            reset(enemiesList);
+//            reset(enemiesList);
+//            mediator.setRoundEndText(enemy.getName() + " win");
+            player.setPoints(0);
+            player.setExperience(0);
+            int currentLocation = location.getCurrentLocation();
+            location.resetLocation(false, currentLocation);
+            player.setHealth(player.getMaxHealth()); // Восстановить здоровье
             mediator.setRoundEndText(enemy.getName() + " win");
-            
-
         }
     }
 
@@ -157,39 +158,45 @@ public class Fight {
         player.setHealth(80);
         player.setMaxHealth(80);
         action.resetEnemies(enemiesList);
-        player.setLevel(0);
+        player.setLevel(1);
         player.setPoints(0);
         player.setExperience(0);
         player.setNextLevelExperience(40);
         location.setFullEnemiesList(enemiesList);
         location.resetLocation(false, player.getLevel());
     }
-
+    
     public void endFinalRound(ArrayList<Result> results, Enemy[] enemiesList) {
         GameActions action = new GameActions();
-        action.resetEnemies(enemiesList);
-        String text = "Победа не на вашей стороне";
         if (player.getHealth() > 0) {
             action.addPoints(player);
-            text = "Победа на вашей стороне";
-        }
-        boolean top = false;
-        if (results == null) {
-            top = true;
-        } else {
-            int a = 0;
-            for (int j = 0; j < results.size(); j++) {
-                if (player.getPoints() < results.get(j).getPoints()) {
-                    a++;
+            mediator.setRoundEndText("Победа на вашей стороне");
+
+            boolean top = false;
+            if (results == null) {
+                top = true;
+            } else {
+                int a = 0;
+                for (Result result : results) {
+                    if (player.getPoints() < result.getPoints()) {
+                        a++;
+                    }
+                }
+                if (a < 10) {
+                    top = true;
                 }
             }
-            if (a < 10) {
-                top = true;
-            }
-        }
-        mediator.gameEnding(text, top);
-    }
 
+            action.resetEnemies(enemiesList);
+            mediator.gameEnding("Победа на вашей стороне", top);
+
+        } else {
+            reset(enemiesList);
+            mediator.setRoundEndText(enemy.getName() + " win");
+            mediator.setEndFightDialog();
+        }
+    }
+    
     public void newRound() {
         mediator.setPlayerMaxHealthBar(player);
         mediator.setEnemyMaxHealthBar(enemy);
@@ -198,5 +205,4 @@ public class Fight {
         mediator.setHealthBar(player);
         mediator.setHealthBar(enemy);
     }
-
 }

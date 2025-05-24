@@ -54,18 +54,14 @@ public class Location {
             currentEnemiesList.add(enemy);
         }
     }
-
-    public void resetLocation(boolean a, int i) {
-        if (a) {
-            currentLocation += 1 ;
-            currentEnemyNumber = 0;
-            setEnemiesAtLocation(i);
-        }
-        else {
-            currentLocation = 1;
-            currentEnemyNumber = 0;
-            setEnemiesAtLocation(0);
-        }
+    public void resetLocation(boolean toNextLocation, int locationNumber) {
+        if (toNextLocation) {
+            currentLocation += 1;
+        } else {
+            currentLocation = locationNumber; 
+        }   
+        currentEnemyNumber = 0;
+        setEnemiesAtLocation(locationNumber); 
     }
 
     public int getCurrentLocation() {
