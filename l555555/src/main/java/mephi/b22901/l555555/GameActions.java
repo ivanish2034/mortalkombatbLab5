@@ -5,7 +5,9 @@
 package mephi.b22901.l555555;
 
 import java.util.ArrayList;
-
+import mephi.b22901.l555555.actions.FightAction;
+import mephi.b22901.l555555.fighters.Enemy;
+import mephi.b22901.l555555.fighters.Player;
 /**
  *
  * @author Мария

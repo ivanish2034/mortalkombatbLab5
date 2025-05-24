@@ -5,7 +5,13 @@
 package mephi.b22901.l555555;
 //ADD IMAGE!!!
 import java.util.ArrayList;
-
+import mephi.b22901.l555555.actions.Hit;
+import mephi.b22901.l555555.actions.Debuff;
+import mephi.b22901.l555555.actions.FightAction;
+import mephi.b22901.l555555.actions.Heal;
+import mephi.b22901.l555555.actions.Block;
+import mephi.b22901.l555555.fighters.Enemy;
+import mephi.b22901.l555555.fighters.Player;
 /**
  *
  * @author Мария

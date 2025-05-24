@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package mephi.b22901.l555555;
+
+import mephi.b22901.l555555.fighters.Enemy;
+import mephi.b22901.l555555.fighters.Player;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

@@ -4,6 +4,7 @@
  */
 package mephi.b22901.l555555;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +12,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import mephi.b22901.l555555.actions.FightAction;
+import mephi.b22901.l555555.fighters.Fighter;
+import mephi.b22901.l555555.fighters.Enemy;
+import mephi.b22901.l555555.fighters.Player;
 /**
  *
  * @author ivis2
@@ -159,6 +164,11 @@ public class Mediator {
     public void setEndFightDialog() {
         endFightDialog.setVisible(true);
         endFightDialog.setBounds(300, 150, 700, 600);
+        GIFLabel.setIcon(new ImageIcon("eacnft.gif"));
+    }
+    
+    public void hideGIFAnimation() {
+        GIFLabel.setIcon(null);
     }
 
     public void setRoundEndText(String text) {

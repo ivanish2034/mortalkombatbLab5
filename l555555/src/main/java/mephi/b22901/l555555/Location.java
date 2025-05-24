@@ -5,6 +5,7 @@
 package mephi.b22901.l555555;
 
 import java.util.ArrayList;
+import mephi.b22901.l555555.fighters.Enemy;
 
 /**
  *
@@ -35,20 +36,18 @@ public class Location {
             switch (k) {
                 case 0 -> {
                     enemy = fullEnemiesList[0];
-                    enemy.setIcon("Baraka.jpg");
+                    enemy.setIcon("result_Baraka.jpg");
                 }
                 case 1 -> {
                     enemy = fullEnemiesList[1];
-//                    enemy.setIcon("SubZero (1).jpg");
                     enemy.setIcon("result_SubZero.jpg");
                 }
                 case 2 -> {
                     enemy = fullEnemiesList[2];
-                    enemy.setIcon("LiuKang.jpg");
+                    enemy.setIcon("result_liu.png");
                 }
                 case 3 -> {
                     enemy = fullEnemiesList[3];
-//                    enemy.setIcon("SonyaBlade.jpg");
                     enemy.setIcon("result_Sonia.png");
                 }
             }
@@ -85,7 +84,7 @@ public class Location {
         } else {
             currentEnemyNumber = 0;
             enemy = fullEnemiesList[4];
-            enemy.setIcon("Boss.jpg");
+            enemy.setIcon("result_Boss.jpg");
             return enemy;
         }
     }

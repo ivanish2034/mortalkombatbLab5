@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mephi.b22901.l555555;
+package mephi.b22901.l555555.fighters;
+
+import mephi.b22901.l555555.Item;
+
 /**
  *
- * @author Мария
+ * @author ivis2
  */
-
 public class Player extends Fighter {
     
     private int points;
