@@ -141,13 +141,11 @@ public class Fight {
                 action.addPoints(player);
             }
         } else {
-//            reset(enemiesList);
-//            mediator.setRoundEndText(enemy.getName() + " win");
             player.setPoints(0);
             player.setExperience(0);
             int currentLocation = location.getCurrentLocation();
             location.resetLocation(false, currentLocation);
-            player.setHealth(player.getMaxHealth()); // Восстановить здоровье
+            player.setHealth(player.getMaxHealth());
             mediator.setRoundEndText(enemy.getName() + " win");
         }
     }
