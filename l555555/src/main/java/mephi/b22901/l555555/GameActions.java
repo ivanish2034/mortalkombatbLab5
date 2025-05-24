@@ -112,7 +112,17 @@ public class GameActions {
             }
         }
     }
+    
+    public boolean buyItem(Player player, int itemIndex, int cost) {
+        if (player.getPoints() >= cost) {
+            player.getItems()[itemIndex].setCount(1);
+            player.setPoints(player.getPoints() - cost);
+            return true; 
+        }
+        return false; 
+    }
 
+    
     public void resetEnemies(Enemy[] enemiesList) {
         for (Enemy enemy : enemiesList) {
             enemy.setLevel(1);

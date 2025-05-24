@@ -38,6 +38,9 @@ public class GUI extends javax.swing.JFrame {
         itemsGroup.add(firstItemButton);
         itemsGroup.add(secondItemButton);
         itemsGroup.add(thirdItemButton);
+        shopGroup.add(buyFirstItemButton);
+        shopGroup.add(buySecondItemButton);
+        shopGroup.add(buyThirdItemButton);
         items[0] = new Item("Малое зелье лечения", 0);
         items[1] = new Item("Большое зелье лечения", 0);
         items[2] = new Item("Крест возрождения", 0);
@@ -92,6 +95,7 @@ public class GUI extends javax.swing.JFrame {
         enemyDebuffLabel = new javax.swing.JLabel();
         debuffButton = new javax.swing.JButton();
         playerDebuffLabel = new javax.swing.JLabel();
+        shopButton = new javax.swing.JButton();
         endFightDialog = new javax.swing.JDialog();
         endFightPanel = new javax.swing.JPanel();
         endRoundLabel = new javax.swing.JLabel();
@@ -140,6 +144,17 @@ public class GUI extends javax.swing.JFrame {
         damageButton = new javax.swing.JRadioButton();
         chooseAttributeButton = new javax.swing.JButton();
         attributesGroup = new javax.swing.ButtonGroup();
+        shopDialog = new javax.swing.JDialog();
+        shopPanel = new javax.swing.JPanel();
+        shopLabel = new javax.swing.JLabel();
+        buyFirstItemButton = new javax.swing.JRadioButton();
+        buySecondItemButton = new javax.swing.JRadioButton();
+        buyThirdItemButton = new javax.swing.JRadioButton();
+        buyButton = new javax.swing.JButton();
+        firstItemMoneyLabel = new javax.swing.JLabel();
+        secondItemMoneyLabel = new javax.swing.JLabel();
+        thirdItemMoneyLabel = new javax.swing.JLabel();
+        shopGroup = new javax.swing.ButtonGroup();
         panel = new javax.swing.JPanel();
         mkLabel = new javax.swing.JLabel();
         seeResultsButton = new javax.swing.JButton();
@@ -255,7 +270,7 @@ public class GUI extends javax.swing.JFrame {
         stunLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         itemsButton.setBackground(new java.awt.Color(174, 183, 106));
-        itemsButton.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        itemsButton.setFont(new java.awt.Font("STLiti", 1, 12)); // NOI18N
         itemsButton.setText("Предметы");
         itemsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,6 +287,15 @@ public class GUI extends javax.swing.JFrame {
         debuffButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 debuffButtonActionPerformed(evt);
+            }
+        });
+
+        shopButton.setBackground(new java.awt.Color(255, 0, 255));
+        shopButton.setFont(new java.awt.Font("STLiti", 0, 12)); // NOI18N
+        shopButton.setText("Магазин");
+        shopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shopButtonActionPerformed(evt);
             }
         });
 
@@ -310,37 +334,36 @@ public class GUI extends javax.swing.JFrame {
                                             .addComponent(stunLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
                             .addGroup(fightPanelLayout.createSequentialGroup()
-                                .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(fightPanelLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(itemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(attackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
-                                        .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
-                                                .addComponent(enemyHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(fightPanelLayout.createSequentialGroup()
-                                                        .addGap(92, 92, 92)
-                                                        .addComponent(pointsTitleLabel))
-                                                    .addGroup(fightPanelLayout.createSequentialGroup()
-                                                        .addGap(111, 111, 111)
-                                                        .addComponent(pointsValueLabel)
-                                                        .addGap(108, 108, 108)
-                                                        .addComponent(experienceValueLabel))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
-                                                .addComponent(enemyDamageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(enemyDamageValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
-                                                .addGap(57, 57, 57)
-                                                .addComponent(enemyHeroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(shopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(itemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(attackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(enemyDebuffLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
+                                        .addComponent(enemyHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(fightPanelLayout.createSequentialGroup()
+                                                .addGap(92, 92, 92)
+                                                .addComponent(pointsTitleLabel))
+                                            .addGroup(fightPanelLayout.createSequentialGroup()
+                                                .addGap(111, 111, 111)
+                                                .addComponent(pointsValueLabel)
+                                                .addGap(108, 108, 108)
+                                                .addComponent(experienceValueLabel))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
+                                        .addComponent(enemyDamageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(enemyDamageValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(enemyHeroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fightPanelLayout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(enemyDebuffLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(fightPanelLayout.createSequentialGroup()
@@ -449,10 +472,13 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(enemyHeroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(blockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(debuffButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(itemsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(attackButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(shopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(itemsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(blockButton)
+                        .addComponent(attackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(debuffButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35))
             .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(fightPanelLayout.createSequentialGroup()
@@ -994,6 +1020,7 @@ public class GUI extends javax.swing.JFrame {
         levelUpLabel.setForeground(new java.awt.Color(0, 0, 255));
         levelUpLabel.setText("Что хотите улучшить?");
 
+        healthButton.setBackground(new java.awt.Color(153, 255, 255));
         healthButton.setForeground(new java.awt.Color(153, 153, 255));
         healthButton.setText("Здоровье");
         healthButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1002,6 +1029,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        damageButton.setBackground(new java.awt.Color(102, 255, 255));
         damageButton.setForeground(new java.awt.Color(153, 153, 255));
         damageButton.setText("Урон");
         damageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1012,7 +1040,7 @@ public class GUI extends javax.swing.JFrame {
 
         chooseAttributeButton.setFont(new java.awt.Font("STLiti", 1, 14)); // NOI18N
         chooseAttributeButton.setForeground(new java.awt.Color(153, 153, 255));
-        chooseAttributeButton.setText("Я выбрал,  го  дальше");
+        chooseAttributeButton.setText("Гойда");
         chooseAttributeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chooseAttributeButtonActionPerformed(evt);
@@ -1035,7 +1063,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(attributePanelLayout.createSequentialGroup()
                 .addGap(101, 101, 101)
-                .addComponent(chooseAttributeButton)
+                .addComponent(chooseAttributeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         attributePanelLayout.setVerticalGroup(
@@ -1066,6 +1094,120 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(levelUpLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(attributePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        shopPanel.setBackground(new java.awt.Color(255, 102, 255));
+
+        shopLabel.setFont(new java.awt.Font("STLiti", 3, 24)); // NOI18N
+        shopLabel.setForeground(new java.awt.Color(51, 255, 0));
+        shopLabel.setText("Магазин");
+
+        buyFirstItemButton.setBackground(new java.awt.Color(255, 0, 255));
+        shopGroup.add(buyFirstItemButton);
+        buyFirstItemButton.setForeground(new java.awt.Color(0, 255, 255));
+        buyFirstItemButton.setText("Малое зелье лечение");
+        buyFirstItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyFirstItemButtonActionPerformed(evt);
+            }
+        });
+
+        buySecondItemButton.setBackground(new java.awt.Color(255, 51, 255));
+        buySecondItemButton.setForeground(new java.awt.Color(51, 255, 255));
+        buySecondItemButton.setText("Большое зелье лечение");
+
+        buyThirdItemButton.setBackground(new java.awt.Color(255, 51, 255));
+        buyThirdItemButton.setForeground(new java.awt.Color(0, 255, 255));
+        buyThirdItemButton.setText("Крест возрождения");
+        buyThirdItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyThirdItemButtonActionPerformed(evt);
+            }
+        });
+
+        buyButton.setBackground(new java.awt.Color(204, 0, 204));
+        buyButton.setFont(new java.awt.Font("STLiti", 0, 12)); // NOI18N
+        buyButton.setForeground(new java.awt.Color(255, 204, 51));
+        buyButton.setText("Купить");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
+
+        firstItemMoneyLabel.setBackground(new java.awt.Color(255, 102, 255));
+        firstItemMoneyLabel.setForeground(new java.awt.Color(0, 255, 153));
+        firstItemMoneyLabel.setText("10 очков");
+
+        secondItemMoneyLabel.setBackground(new java.awt.Color(255, 102, 255));
+        secondItemMoneyLabel.setForeground(new java.awt.Color(51, 255, 153));
+        secondItemMoneyLabel.setText("20 очков");
+
+        thirdItemMoneyLabel.setForeground(new java.awt.Color(0, 255, 153));
+        thirdItemMoneyLabel.setText("35 очков");
+
+        javax.swing.GroupLayout shopPanelLayout = new javax.swing.GroupLayout(shopPanel);
+        shopPanel.setLayout(shopPanelLayout);
+        shopPanelLayout.setHorizontalGroup(
+            shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shopPanelLayout.createSequentialGroup()
+                .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(shopPanelLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(buyFirstItemButton)
+                                .addComponent(buySecondItemButton)
+                                .addComponent(buyThirdItemButton))
+                            .addGroup(shopPanelLayout.createSequentialGroup()
+                                .addComponent(shopLabel)
+                                .addGap(13, 13, 13)))
+                        .addGap(41, 41, 41)
+                        .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(thirdItemMoneyLabel)
+                            .addComponent(secondItemMoneyLabel)
+                            .addComponent(firstItemMoneyLabel)))
+                    .addGroup(shopPanelLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+        shopPanelLayout.setVerticalGroup(
+            shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shopPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(shopLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyFirstItemButton)
+                    .addComponent(firstItemMoneyLabel))
+                .addGap(18, 18, 18)
+                .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buySecondItemButton)
+                    .addComponent(secondItemMoneyLabel))
+                .addGap(18, 18, 18)
+                .addGroup(shopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyThirdItemButton)
+                    .addComponent(thirdItemMoneyLabel))
+                .addGap(18, 18, 18)
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout shopDialogLayout = new javax.swing.GroupLayout(shopDialog.getContentPane());
+        shopDialog.getContentPane().setLayout(shopDialogLayout);
+        shopDialogLayout.setHorizontalGroup(
+            shopDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shopDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(shopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        shopDialogLayout.setVerticalGroup(
+            shopDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shopDialogLayout.createSequentialGroup()
+                .addComponent(shopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1103,9 +1245,8 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(mkLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(seeResultsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(startButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(seeResultsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
@@ -1296,6 +1437,59 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_attackButtonActionPerformed
 
+    private void shopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopButtonActionPerformed
+        shopDialog.setLocationRelativeTo(null); // по центру
+        shopDialog.setVisible(true);
+        shopDialog.setBounds(300, 200, 430, 350);
+    }//GEN-LAST:event_shopButtonActionPerformed
+
+    private void buyFirstItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyFirstItemButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buyFirstItemButtonActionPerformed
+
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        Player player = game.fight.getPlayer();
+
+        if (buyFirstItemButton.isSelected()) {
+            if (player.getPoints() >= 10) {
+                player.getItems()[0].setCount(1);
+                player.setPoints(player.getPoints() - 10);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                    "Недостаточно очков для покупки малого зелья!",
+                    "Ошибка",
+                    JOptionPane.WARNING_MESSAGE);
+            }
+        } else if (buySecondItemButton.isSelected()) {
+            if (player.getPoints() >= 20) {
+                player.getItems()[1].setCount(1);
+                player.setPoints(player.getPoints() - 20);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                    "Недостаточно очков для покупки большого зелья!",
+                    "Ошибка",
+                    JOptionPane.WARNING_MESSAGE);
+            }
+        } else if (buyThirdItemButton.isSelected()) {
+            if (player.getPoints() >= 35) {
+                player.getItems()[2].setCount(1);
+                player.setPoints(player.getPoints() - 35);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                    "Недостаточно очков для покупки креста возрождения!",
+                    "Ошибка",
+                    JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        mediator.setBagText(player.getItems());
+        pointsValueLabel.setText(String.valueOf(player.getPoints()));
+        shopDialog.dispose();
+    }//GEN-LAST:event_buyButtonActionPerformed
+
+    private void buyThirdItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyThirdItemButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buyThirdItemButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1306,6 +1500,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel attributePanel;
     private javax.swing.ButtonGroup attributesGroup;
     private javax.swing.JButton blockButton;
+    private javax.swing.JButton buyButton;
+    private javax.swing.JRadioButton buyFirstItemButton;
+    private javax.swing.JRadioButton buySecondItemButton;
+    private javax.swing.JRadioButton buyThirdItemButton;
     private javax.swing.JDialog cantUseItemDialog;
     private javax.swing.JLabel cantUseItemLabel;
     private javax.swing.JPanel cantUseItemPanel;
@@ -1343,6 +1541,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel fightLabel;
     private javax.swing.JPanel fightPanel;
     private javax.swing.JRadioButton firstItemButton;
+    private javax.swing.JLabel firstItemMoneyLabel;
     private javax.swing.JRadioButton healthButton;
     private javax.swing.JDialog itemsBagDialog;
     private javax.swing.JLabel itemsBagLabel;
@@ -1373,15 +1572,22 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel recordsTablePanel;
     private javax.swing.JScrollPane recordsTableScrollPane;
     private javax.swing.JRadioButton secondItemButton;
+    private javax.swing.JLabel secondItemMoneyLabel;
     private javax.swing.JButton seeResultsButton;
     private javax.swing.JTextField setLocationsField;
     private javax.swing.JFrame setLocationsFrame;
     private javax.swing.JLabel setLocationsLabel;
     private javax.swing.JPanel setLocationsPanel;
+    private javax.swing.JButton shopButton;
+    private javax.swing.JDialog shopDialog;
+    private javax.swing.ButtonGroup shopGroup;
+    private javax.swing.JLabel shopLabel;
+    private javax.swing.JPanel shopPanel;
     private javax.swing.JButton startButton;
     private javax.swing.JButton startWithLocationsButton;
     private javax.swing.JLabel stunLabel;
     private javax.swing.JRadioButton thirdItemButton;
+    private javax.swing.JLabel thirdItemMoneyLabel;
     private javax.swing.JLabel turnLabel;
     private javax.swing.JLabel unavailableItemLabel;
     private javax.swing.JButton useItemButton;
