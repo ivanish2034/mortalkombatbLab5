@@ -34,33 +34,17 @@ public class GUI extends javax.swing.JFrame {
         game.writeToTable(recordsTable);
         game.setEnemies();
         game.fight.location.setFullEnemiesList(game.getEnemies());
-        // Загрузка изображения игрока
-    String imagePath = AppPathHelper.getPathForResource("Fighter.jpg");
-    File playerImage = new File(imagePath);
-    
-    if (playerImage.exists()) {
-        playerIconLabel.setIcon(new ImageIcon(playerImage.getAbsolutePath()));
-    } else {
-        System.err.println("Не найден файл: " + playerImage.getAbsolutePath());
-        playerIconLabel.setText("Fighter.jpg not found!");
-        playerIconLabel.setForeground(Color.RED);
-    }
-//        try {
-//            java.net.URL playerImageUrl = getClass().getResource("/images/Fighter.jpg");
-//            if (playerImageUrl != null) {
-//                playerIconLabel.setIcon(new ImageIcon(playerImageUrl));
-//            } else {
-//                File playerImageFile = new File("images/Fighter.jpg");
-//                if (playerImageFile.exists()) {
-//                    playerIconLabel.setIcon(new ImageIcon(playerImageFile.getAbsolutePath()));
-//                } else {
-//                    System.err.println("Player image not found in resources or file system");
-//                }
-//            }
-//        } catch (Exception e) {
-//            System.err.println("Error loading player image: " + e.getMessage());
-//            e.printStackTrace();
-//        }
+        
+        String imagePath = AppPathHelper.getPathForResource("Fighter.jpg");
+        File playerImage = new File(imagePath);
+
+        if (playerImage.exists()) {
+            playerIconLabel.setIcon(new ImageIcon(playerImage.getAbsolutePath()));
+        } else {
+            System.err.println("Не найден файл: " + playerImage.getAbsolutePath());
+            playerIconLabel.setText("Fighter.jpg not found!");
+            playerIconLabel.setForeground(Color.RED);
+        }
         attributesGroup.add(healthButton);
         attributesGroup.add(damageButton);
         itemsGroup.add(firstItemButton);
@@ -80,20 +64,6 @@ public class GUI extends javax.swing.JFrame {
                 cantUseItemDialog, itemsBagDialog, GIFLabel);
         game.fight.setMediator(mediator);
     }
-    
-//    private String getAppDirectory() {
-//        try {
-//            // Получаем путь к JAR-файлу
-//            String jarPath = new File(getClass().getProtectionDomain()
-//                                    .getCodeSource()
-//                                    .getLocation()
-//                                    .toURI())
-//                            .getParent();
-//            return jarPath != null ? jarPath : System.getProperty("user.dir");
-//        } catch (Exception e) {
-//            return System.getProperty("user.dir"); // Если ошибка - используем текущую директорию
-//        }
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
