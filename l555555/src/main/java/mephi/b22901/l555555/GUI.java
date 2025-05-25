@@ -33,23 +33,22 @@ public class GUI extends javax.swing.JFrame {
         game.writeToTable(recordsTable);
         game.setEnemies();
         game.fight.location.setFullEnemiesList(game.getEnemies());
-//        playerIconLabel.setIcon(new ImageIcon("Fighter.jpg"));
         try {
-        java.net.URL playerImageUrl = getClass().getResource("/images/Fighter.jpg");
-        if (playerImageUrl != null) {
-            playerIconLabel.setIcon(new ImageIcon(playerImageUrl));
-        } else {
-            File playerImageFile = new File("images/Fighter.jpg");
-            if (playerImageFile.exists()) {
-                playerIconLabel.setIcon(new ImageIcon(playerImageFile.getAbsolutePath()));
+            java.net.URL playerImageUrl = getClass().getResource("/images/Fighter.jpg");
+            if (playerImageUrl != null) {
+                playerIconLabel.setIcon(new ImageIcon(playerImageUrl));
             } else {
-                System.err.println("Player image not found in resources or file system");
+                File playerImageFile = new File("images/Fighter.jpg");
+                if (playerImageFile.exists()) {
+                    playerIconLabel.setIcon(new ImageIcon(playerImageFile.getAbsolutePath()));
+                } else {
+                    System.err.println("Player image not found in resources or file system");
+                }
             }
+        } catch (Exception e) {
+            System.err.println("Error loading player image: " + e.getMessage());
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        System.err.println("Error loading player image: " + e.getMessage());
-        e.printStackTrace();
-    }
         attributesGroup.add(healthButton);
         attributesGroup.add(damageButton);
         itemsGroup.add(firstItemButton);

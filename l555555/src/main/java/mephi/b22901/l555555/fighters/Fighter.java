@@ -68,19 +68,17 @@ public abstract class Fighter {
     }
     
     public void setIcon(ImageIcon icon) {
-        // Новый метод для установки готового ImageIcon
         this.icon = icon;
     }
     
     public void setIconFromResources(String resourcePath) {
-        // Метод для загрузки иконки из ресурсов
         try {
             java.net.URL imageUrl = getClass().getResource(resourcePath);
             if (imageUrl != null) {
                 icon = new ImageIcon(imageUrl);
             } else {
                 System.err.println("Image not found in resources: " + resourcePath);
-                icon = null; // или установите иконку по умолчанию
+                icon = null;
             }
         } catch (Exception e) {
             System.err.println("Error loading image from resources: " + resourcePath);
