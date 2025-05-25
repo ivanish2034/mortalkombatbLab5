@@ -1,4 +1,5 @@
 package mephi.b22901.l555555;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,23 @@ public class GUI extends javax.swing.JFrame {
         game.writeToTable(recordsTable);
         game.setEnemies();
         game.fight.location.setFullEnemiesList(game.getEnemies());
-        playerIconLabel.setIcon(new ImageIcon("Fighter.jpg"));
+//        playerIconLabel.setIcon(new ImageIcon("Fighter.jpg"));
+        try {
+        java.net.URL playerImageUrl = getClass().getResource("/images/Fighter.jpg");
+        if (playerImageUrl != null) {
+            playerIconLabel.setIcon(new ImageIcon(playerImageUrl));
+        } else {
+            File playerImageFile = new File("images/Fighter.jpg");
+            if (playerImageFile.exists()) {
+                playerIconLabel.setIcon(new ImageIcon(playerImageFile.getAbsolutePath()));
+            } else {
+                System.err.println("Player image not found in resources or file system");
+            }
+        }
+    } catch (Exception e) {
+        System.err.println("Error loading player image: " + e.getMessage());
+        e.printStackTrace();
+    }
         attributesGroup.add(healthButton);
         attributesGroup.add(damageButton);
         itemsGroup.add(firstItemButton);

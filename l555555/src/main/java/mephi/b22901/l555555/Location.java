@@ -4,15 +4,17 @@
  */
 package mephi.b22901.l555555;
 
-import java.util.ArrayList;
 import mephi.b22901.l555555.fighters.Enemy;
+import java.util.ArrayList;
 
 /**
  *
  * @author ivis2
  */
-public class Location {
 
+
+
+public class Location {
     public int currentLocation = 1;
     public int currentEnemyNumber = 0;
     ArrayList<Enemy> currentEnemiesList = new ArrayList<>();
@@ -26,8 +28,7 @@ public class Location {
     public ArrayList<Enemy> getEnemiesAtLocation() {
         return currentEnemiesList;
     }
-
-    public void setEnemiesAtLocation(int i) {
+     public void setEnemiesAtLocation(int i) {
         currentEnemiesList = new ArrayList<>();
         Enemy enemy = null;
         locationSize = 1 + (int) (Math.random() * i);
@@ -36,24 +37,25 @@ public class Location {
             switch (k) {
                 case 0 -> {
                     enemy = fullEnemiesList[0];
-                    enemy.setIcon("result_Baraka.jpg");
+                    enemy.setIconFromResources("/images/result_Baraka.jpg");
                 }
                 case 1 -> {
                     enemy = fullEnemiesList[1];
-                    enemy.setIcon("result_SubZero.jpg");
+                    enemy.setIconFromResources("/images/result_SubZero.jpg");
                 }
                 case 2 -> {
                     enemy = fullEnemiesList[2];
-                    enemy.setIcon("result_liu.png");
+                    enemy.setIconFromResources("/images/result_liu.png");
                 }
                 case 3 -> {
                     enemy = fullEnemiesList[3];
-                    enemy.setIcon("result_Sonia.png");
+                    enemy.setIconFromResources("/images/result_Sonia.png");
                 }
             }
             currentEnemiesList.add(enemy);
         }
     }
+
     public void resetLocation(boolean toNextLocation, int locationNumber) {
         if (toNextLocation) {
             currentLocation += 1;
@@ -71,7 +73,7 @@ public class Location {
     public int getCurrentEnemyNumber() {
         return currentEnemyNumber;
     }
-
+    
     public Enemy getCurrentEnemy() {
         Enemy enemy = null;
         if (currentEnemyNumber != locationSize) {
@@ -80,7 +82,7 @@ public class Location {
         } else {
             currentEnemyNumber = 0;
             enemy = fullEnemiesList[4];
-            enemy.setIcon("result_Boss.jpg");
+            enemy.setIconFromResources("/images/result_Boss.jpg");
             return enemy;
         }
     }
