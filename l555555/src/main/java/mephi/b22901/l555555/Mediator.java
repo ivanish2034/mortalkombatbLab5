@@ -162,27 +162,39 @@ public class Mediator {
         fightFrame.dispose();
     }
     
+//    public void setEndFightDialog() {
+//        endFightDialog.setVisible(true);
+//        endFightDialog.setBounds(300, 150, 700, 600);
+//        try {
+//            java.net.URL gifUrl = getClass().getResource("/images/eacnft.gif");
+//            if (gifUrl != null) {
+//                GIFLabel.setIcon(new ImageIcon(gifUrl));
+//            } else {
+//                File gifFile = new File("images/eacnft.gif");
+//                if (gifFile.exists()) {
+//                    GIFLabel.setIcon(new ImageIcon(gifFile.getAbsolutePath()));
+//                } else {
+//                    System.err.println("GIF file not found in resources or file system");
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Error loading GIF: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
     public void setEndFightDialog() {
-        endFightDialog.setVisible(true);
-        endFightDialog.setBounds(300, 150, 700, 600);
-        try {
-            java.net.URL gifUrl = getClass().getResource("/images/eacnft.gif");
-            if (gifUrl != null) {
-                GIFLabel.setIcon(new ImageIcon(gifUrl));
-            } else {
-                File gifFile = new File("images/eacnft.gif");
-                if (gifFile.exists()) {
-                    GIFLabel.setIcon(new ImageIcon(gifFile.getAbsolutePath()));
-                } else {
-                    System.err.println("GIF file not found in resources or file system");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error loading GIF: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
+    endFightDialog.setVisible(true);
+    endFightDialog.setBounds(300, 150, 700, 600);
     
+    String gifPath = AppPathHelper.getPathForResource("eacnft.gif");
+    File gifFile = new File(gifPath);
+    
+    if (gifFile.exists()) {
+        GIFLabel.setIcon(new ImageIcon(gifFile.getAbsolutePath()));
+    } else {
+        System.err.println("GIF не найден: " + gifFile.getAbsolutePath());
+    }
+}
     public void hideGIFAnimation() {
         GIFLabel.setIcon(null);
     }

@@ -1,4 +1,5 @@
 package mephi.b22901.l555555;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -33,22 +34,33 @@ public class GUI extends javax.swing.JFrame {
         game.writeToTable(recordsTable);
         game.setEnemies();
         game.fight.location.setFullEnemiesList(game.getEnemies());
-        try {
-            java.net.URL playerImageUrl = getClass().getResource("/images/Fighter.jpg");
-            if (playerImageUrl != null) {
-                playerIconLabel.setIcon(new ImageIcon(playerImageUrl));
-            } else {
-                File playerImageFile = new File("images/Fighter.jpg");
-                if (playerImageFile.exists()) {
-                    playerIconLabel.setIcon(new ImageIcon(playerImageFile.getAbsolutePath()));
-                } else {
-                    System.err.println("Player image not found in resources or file system");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error loading player image: " + e.getMessage());
-            e.printStackTrace();
-        }
+        // Загрузка изображения игрока
+    String imagePath = AppPathHelper.getPathForResource("Fighter.jpg");
+    File playerImage = new File(imagePath);
+    
+    if (playerImage.exists()) {
+        playerIconLabel.setIcon(new ImageIcon(playerImage.getAbsolutePath()));
+    } else {
+        System.err.println("Не найден файл: " + playerImage.getAbsolutePath());
+        playerIconLabel.setText("Fighter.jpg not found!");
+        playerIconLabel.setForeground(Color.RED);
+    }
+//        try {
+//            java.net.URL playerImageUrl = getClass().getResource("/images/Fighter.jpg");
+//            if (playerImageUrl != null) {
+//                playerIconLabel.setIcon(new ImageIcon(playerImageUrl));
+//            } else {
+//                File playerImageFile = new File("images/Fighter.jpg");
+//                if (playerImageFile.exists()) {
+//                    playerIconLabel.setIcon(new ImageIcon(playerImageFile.getAbsolutePath()));
+//                } else {
+//                    System.err.println("Player image not found in resources or file system");
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Error loading player image: " + e.getMessage());
+//            e.printStackTrace();
+//        }
         attributesGroup.add(healthButton);
         attributesGroup.add(damageButton);
         itemsGroup.add(firstItemButton);
@@ -68,7 +80,20 @@ public class GUI extends javax.swing.JFrame {
                 cantUseItemDialog, itemsBagDialog, GIFLabel);
         game.fight.setMediator(mediator);
     }
-
+    
+//    private String getAppDirectory() {
+//        try {
+//            // Получаем путь к JAR-файлу
+//            String jarPath = new File(getClass().getProtectionDomain()
+//                                    .getCodeSource()
+//                                    .getLocation()
+//                                    .toURI())
+//                            .getParent();
+//            return jarPath != null ? jarPath : System.getProperty("user.dir");
+//        } catch (Exception e) {
+//            return System.getProperty("user.dir"); // Если ошибка - используем текущую директорию
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -488,9 +513,10 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(enemyHeroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(shopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(itemsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(itemsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(fightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(blockButton)
                         .addComponent(attackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
