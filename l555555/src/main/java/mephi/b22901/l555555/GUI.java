@@ -1432,25 +1432,45 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_chooseAttributeButtonActionPerformed
 
     private void debuffButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debuffButtonActionPerformed
+        if (mediator.isEndFightDialogVisible()) {
+            JOptionPane.showMessageDialog(null, "Сначала завершите бой, закрыв окно результата.");
+            return;
+        }
         game.fight.hit(2, game.getResults(), locationsNumber, game.getEnemies());
     }//GEN-LAST:event_debuffButtonActionPerformed
 
     private void itemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsButtonActionPerformed
+        if (mediator.isEndFightDialogVisible()) {
+            JOptionPane.showMessageDialog(null, "Сначала завершите бой, закрыв окно результата.");
+            return;
+        }
         itemsBagDialog.setVisible(true);
         itemsBagDialog.setBounds(300, 200, 430, 350);
     }//GEN-LAST:event_itemsButtonActionPerformed
 
     private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+        if (mediator.isEndFightDialogVisible()) {
+            JOptionPane.showMessageDialog(null, "Сначала завершите бой, закрыв окно результата.");
+            return;
+        }
         game.fight.hit(0, game.getResults(), locationsNumber, game.getEnemies());
     }//GEN-LAST:event_blockButtonActionPerformed
 
     private void attackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attackButtonActionPerformed
+        if (mediator.isEndFightDialogVisible()) {
+            JOptionPane.showMessageDialog(null, "Сначала завершите бой, закрыв окно результата.");
+            return;
+        }
         game.fight.hit(1, game.getResults(), locationsNumber, game.getEnemies());
 
     }//GEN-LAST:event_attackButtonActionPerformed
 
     private void shopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopButtonActionPerformed
-        shopDialog.setLocationRelativeTo(null); // по центру
+        if (mediator.isEndFightDialogVisible()) {
+            JOptionPane.showMessageDialog(null, "Сначала завершите бой, закрыв окно результата.");
+            return;
+        }
+        shopDialog.setLocationRelativeTo(null); 
         shopDialog.setVisible(true);
         shopDialog.setBounds(300, 200, 430, 350);
     }//GEN-LAST:event_shopButtonActionPerformed

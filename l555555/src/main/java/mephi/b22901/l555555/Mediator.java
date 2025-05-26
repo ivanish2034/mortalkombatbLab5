@@ -162,10 +162,12 @@ public class Mediator {
         fightFrame.dispose();
     }
     
-    public void setEndFightDialog() {
-        endFightDialog.setVisible(true);
-        endFightDialog.setBounds(300, 150, 700, 600);
+    public boolean isEndFightDialogVisible() {
+        return endFightDialog.isVisible();
+    }
 
+    public void setEndFightDialog() {
+        endFightDialog.setBounds(300, 150, 700, 600);
         String gifPath = AppPathHelper.getPathForResource("eacnft.gif");
         File gifFile = new File(gifPath);
 
@@ -174,7 +176,9 @@ public class Mediator {
         } else {
             System.err.println("GIF не найден: " + gifFile.getAbsolutePath());
         }
+        endFightDialog.setVisible(true);
     }
+    
     public void hideGIFAnimation() {
         GIFLabel.setIcon(null);
     }
