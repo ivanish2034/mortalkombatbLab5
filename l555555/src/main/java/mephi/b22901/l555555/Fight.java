@@ -51,62 +51,48 @@ public class Fight {
         return this.enemy;
     }
 
-    public void playerMove(FightAction enemyAction, FightAction playerAction) {
-        mediator.setActionLabels(enemy, player, enemyAction, playerAction);
-        playerAction.realisation(player, enemy, enemyAction.getType());
-    }
-
-    public void enemyMove(FightAction enemyAction, FightAction playerAction) {
-        mediator.setActionLabels(player, enemy, enemyAction, playerAction);
-        playerAction.realisation(enemy, player, enemyAction.getType());
-    }
-
     public void checkDebuff() {
-        if (!enemy.isDebuffed()) {
-            mediator.setDebuffLabel(enemy, false);
-        }
-        if (enemy.isDebuffed()) {
-            mediator.setDebuffLabel(enemy, true);
-            enemy.loseDebuffTurn();
-        }
-        if (!player.isDebuffed()) {
-            mediator.setDebuffLabel(player, false);
-        }
-        if (player.isDebuffed()) {
-            mediator.setDebuffLabel(player, true);
-            player.loseDebuffTurn();
-        }
-
+    if (enemy.isDebuffed()) {
+        mediator.setDebuffLabel(enemy, true);
+        enemy.loseDebuffTurn();
+    } else {
+        mediator.setDebuffLabel(enemy, false);
     }
+
+    if (player.isDebuffed()) {
+        mediator.setDebuffLabel(player, true);
+        player.loseDebuffTurn();
+    } else {
+        mediator.setDebuffLabel(player, false);
+    }
+}
 
     public void hit(int a, ArrayList<Result> results, int locationsNumber, Enemy[] enemiesList) {
         GameActions action = new GameActions();
         FightAction enemyAction = action.chooseEnemyAction(enemy, new ArrayList<>(actionsList));
-        switch (a) {
-            case 0 -> {
-                playerMove(enemyAction,actionsList.get(1));
-                if (enemy.getHealth() > 0) {
-                    enemyMove(actionsList.get(1), enemyAction);
-                }
-            }
-            case 1 -> {
-                playerMove(enemyAction, actionsList.get(0));
-                if (enemy.getHealth() > 0) {
-                    enemyMove(actionsList.get(0),enemyAction);
-                }
-            }
-            case 2 -> {
-                playerMove(enemyAction, actionsList.get(2));
-                if (enemy.getHealth() > 0) {
-                    enemyMove(actionsList.get(2),enemyAction);
-                }
-            }
+        FightAction playerAction = actionsList.get(a);
+
+        playerMove(playerAction, enemyAction);
+
+        if (enemy.getHealth() > 0) {
+            enemyMove(enemyAction, playerAction);
         }
+
         mediator.setRoundTexts(player, enemy);
         checkDebuff();
         mediator.setHealthBar(player);
         mediator.setHealthBar(enemy);
         checkDeath(results, locationsNumber, enemiesList);
+    }
+
+    public void playerMove(FightAction playerAction, FightAction enemyAction) {
+        mediator.setActionLabels(player, enemy, playerAction, enemyAction);
+        playerAction.realisation(player, enemy, enemyAction.getType());
+    }
+
+    public void enemyMove(FightAction enemyAction, FightAction playerAction) {
+        mediator.setActionLabels(enemy, player, enemyAction, playerAction);
+        enemyAction.realisation(enemy, player, playerAction.getType());
     }
 
     public void checkDeath(ArrayList<Result> results, int locationsNumber, Enemy[] enemiesList) {

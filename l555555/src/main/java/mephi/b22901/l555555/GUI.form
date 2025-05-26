@@ -104,12 +104,11 @@
                                               <Component id="enemyDamageValueLabel" min="-2" pref="40" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                              <Component id="enemyHeroLabel" min="-2" pref="199" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                              <Component id="enemyDebuffLabel" min="-2" pref="199" max="-2" attributes="0"/>
+                                              <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="enemyHeroLabel" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                                                  <Component id="enemyDebuffLabel" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -260,12 +259,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="shopButton" alignment="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="itemsButton" alignment="3" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="shopButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="itemsButton" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="blockButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="attackButton" alignment="3" max="32767" attributes="0"/>
@@ -584,6 +579,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="enemyDebuffLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x417;&#x434;&#x435;&#x441;&#x44c; &#x432;&#x44b;&#x432;&#x43e;&#x434;&#x438;&#x442;&#x441;&#x44f; &#x434;&#x435;&#x431;&#x430;&#x444;&#x444; &#x43f;&#x440;&#x43e;&#x442;&#x438;&#x432;&#x43d;&#x438;&#x43a;&#x430;"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="debuffButton">
               <Properties>

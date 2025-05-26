@@ -94,10 +94,9 @@ public class Mediator {
         this.itemsBagDialog = itemsBagDialog;
         this.GIFLabel = GIFLabel;
     }
-
-    public void setActionLabels(Fighter enemy, Fighter player, FightAction enemyAction, FightAction playerAction) {
-        playerActionLabel.setText(player.getName() + " uses " + playerAction.getType());
-        enemyActionLabel.setText(enemy.getName() + " use " + enemyAction.getType());
+    public void setActionLabels(Fighter actor1, Fighter actor2, FightAction action1, FightAction action2) {
+        playerActionLabel.setText(actor1.getName() + " uses " + action1.getType());
+        enemyActionLabel.setText(actor2.getName() + " uses " + action2.getType());
     }
 
     public void setDebuffLabel(Fighter player, boolean a) {
